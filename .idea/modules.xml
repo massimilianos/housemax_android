@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/House Max/House Max.iml" filepath="$PROJECT_DIR$/House Max/House Max.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HouseMax.iml" filepath="$PROJECT_DIR$/HouseMax.iml" />
+    </modules>
+  </component>
+</project>
+

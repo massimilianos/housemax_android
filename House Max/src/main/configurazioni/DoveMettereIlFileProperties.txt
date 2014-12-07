@@ -1,0 +1,5 @@
+Step 1: Open in Name_Project-Name_Project.iml file.
+        See the line : option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets"
+Step 2: Create a sub-folder "assets" in main folder.
+Step 3: Put file in this folder.
+Step 4: Load it. Done.
