@@ -24,7 +24,8 @@ public class HouseMaxService extends Service {
 
     public static final String NOTIFICATION = "it.max.android.housemax.services";
 
-    public static final long NOTIFY_INTERVAL = 1 * 60000; // 60 secondi = 1 minuto
+//    public static final long NOTIFY_INTERVAL = 1 * 60000; // 60 secondi = 1 minuto
+    public static final long NOTIFY_INTERVAL = 1 * 2000; // 2 secondi
 
     private Handler mHandler = new Handler();
     private Timer mTimer = null;
@@ -33,7 +34,8 @@ public class HouseMaxService extends Service {
 
     private Context context = null;
 
-    private String URLWebServer = null;
+//    private String URLWebServer = null;
+    private String URLArduinoServer = null;
 
     String[] dati = null;
 
@@ -75,7 +77,8 @@ public class HouseMaxService extends Service {
 
         internetUtils = new InternetUtils(properties);
 
-        URLWebServer = internetUtils.creaURLWebServer(properties);
+//        URLWebServer = internetUtils.creaURLWebServer(properties);
+        URLArduinoServer = internetUtils.creaURLArduinoServer(properties);
 
         if (mTimer != null) {
             mTimer.cancel();
@@ -107,11 +110,13 @@ public class HouseMaxService extends Service {
 
                 try {
                     // LEGGO LA TEMPERATURA
-                    URL = URLWebServer + "/dati/ElaboraDati.php?operazione=select&valore=temperatura";
+//                    URL = URLWebServer + "/dati/ElaboraDati.php?operazione=select&valore=temperatura";
+                    URL = URLArduinoServer + "TemperatureRead";
                     dati[0] = internetUtils.internetResult(URL);
 
                     // LEGGO L'UMIDITA
-                    URL = URLWebServer + "/dati/ElaboraDati.php?operazione=select&valore=umidita";
+//                    URL = URLWebServer + "/dati/ElaboraDati.php?operazione=select&valore=umidita";
+                    URL = URLArduinoServer + "HumdityRead";
                     dati[1] = internetUtils.internetResult(URL);
                 } catch(Exception e) {
                 }

@@ -33,7 +33,8 @@ public class InternetUtils {
 
     public String creaURLArduinoServer(Properties properties) {
         String URLArduinoServer = "http://" + properties.getProperty("arduinoAddress")
-                                  + ":"     + properties.getProperty("arduinoPort");
+                                  + ":"     + properties.getProperty("arduinoPort")
+                                  + "/index.htm?";
 
         return(URLArduinoServer);
     }

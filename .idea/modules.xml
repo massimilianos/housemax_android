@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/House Max/House Max.iml" filepath="$PROJECT_DIR$/House Max/House Max.iml" />
       <module fileurl="file://$PROJECT_DIR$/HouseMax.iml" filepath="$PROJECT_DIR$/HouseMax.iml" />
+      <module fileurl="file://$PROJECT_DIR$/housemax_android.iml" filepath="$PROJECT_DIR$/housemax_android.iml" />
     </modules>
   </component>
 </project>
