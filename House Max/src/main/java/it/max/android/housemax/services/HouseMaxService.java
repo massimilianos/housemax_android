@@ -114,8 +114,8 @@ public class HouseMaxService extends Service {
 
                     // LEGGO L'UMIDITA
 //                    URL = URLWebServer + "/dati/ElaboraDati.php?operazione=select&valore=umidita";
-                    URL = URLArduinoServer + "HumdityRead";
-                    Log.d("URL HumdityRead", URL);
+                    URL = URLArduinoServer + "HumidityRead";
+                    Log.d("URL HumidityRead", URL);
                     dati[1] = internetUtils.internetResult(URL);
                 } catch(Exception e) {
                 }

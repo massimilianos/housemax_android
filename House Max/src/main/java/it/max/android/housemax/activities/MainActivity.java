@@ -44,8 +44,8 @@ public class MainActivity extends ActionBarActivity {
         if (bundle != null) {
             String[] dati = bundle.getStringArray("dati");
 
-            txtTemperatura.setText(dati[0]);
-            txtUmidita.setText(dati[1]);
+            txtTemperatura.setText(dati[0] + "°");
+            txtUmidita.setText(dati[1] + "%");
         }
         }
     };
