@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.InputStream;
@@ -29,15 +30,23 @@ public class MainActivity extends ActionBarActivity {
 
     InternetUtils internetUtils = null;
 
+    Properties properties = null;
+
+    String[] dati = null;
+
+    private TextView txtTemperatura = (TextView)findViewById(R.id.txtTemperatura);
+    private TextView txtUmidita = (TextView)findViewById(R.id.txtUmidita);
+
     private BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Bundle bundle = intent.getExtras();
-            if (bundle != null) {
-                String temperatura = bundle.getString(HouseMaxService.TEMPERATURA);
+        Bundle bundle = intent.getExtras();
+        if (bundle != null) {
+            String[] dati = bundle.getStringArray("dati");
 
-                String umidita = bundle.getString(HouseMaxService.UMIDITA);
-            }
+            txtTemperatura.setText(dati[0]);
+            txtUmidita.setText(dati[1]);
+        }
         }
     };
 
@@ -53,7 +62,7 @@ public class MainActivity extends ActionBarActivity {
             assetManager = resources.getAssets();
 
             InputStream inputStream = assetManager.open("housemax.properties");
-            Properties properties = new Properties();
+            properties = new Properties();
             properties.load(inputStream);
 
             internetUtils = new InternetUtils(properties);
@@ -62,9 +71,12 @@ public class MainActivity extends ActionBarActivity {
             System.exit(-1);
         }
 
+        dati = new String[Integer.parseInt(properties.getProperty("numeroDati"))];
+
         Toast.makeText(context, "ACCENDO SERVIZIO HOUSEMAX", Toast.LENGTH_LONG).show();
 
         serviceHouseMax = new Intent(this, HouseMaxService.class);
+        serviceHouseMax.putExtra("dati", dati);
         startService(serviceHouseMax);
     }
 

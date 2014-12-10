@@ -19,9 +19,6 @@ import it.max.android.housemax.utils.InternetUtils;
 public class HouseMaxService extends Service {
     public static final Integer NUMERO_DATI = 2;
 
-    public static final String TEMPERATURA = "temperatura";
-    public static final String UMIDITA = "umidita";
-
     public static final String NOTIFICATION = "it.max.android.housemax.services";
 
 //    public static final long NOTIFY_INTERVAL = 1 * 60000; // 60 secondi = 1 minuto
@@ -34,6 +31,8 @@ public class HouseMaxService extends Service {
 
     private Context context = null;
 
+    Properties properties = null;
+
 //    private String URLWebServer = null;
     private String URLArduinoServer = null;
 
@@ -43,8 +42,6 @@ public class HouseMaxService extends Service {
     private AssetManager assetManager = null;
 
     private Properties apriFileProperties(Context context) {
-        Properties properties = null;
-
         try {
             resources = this.getResources();
             assetManager = resources.getAssets();
@@ -69,7 +66,7 @@ public class HouseMaxService extends Service {
     public void onCreate() {
         super.onCreate();
 
-        dati = new String[NUMERO_DATI];
+        dati = new String[Integer.parseInt(properties.getProperty("numeroDati"))];
 
         context = getApplicationContext();
 
@@ -94,8 +91,7 @@ public class HouseMaxService extends Service {
     private void publishResults(String[] dati) {
         Intent intent = new Intent(NOTIFICATION);
 
-        intent.putExtra(TEMPERATURA, dati[0]);
-        intent.putExtra(UMIDITA, dati[1]);
+        intent.putExtra("dati", dati);
 
         sendBroadcast(intent);
     }
