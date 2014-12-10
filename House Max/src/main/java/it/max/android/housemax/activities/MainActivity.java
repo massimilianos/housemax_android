@@ -34,8 +34,8 @@ public class MainActivity extends ActionBarActivity {
 
     String[] dati = null;
 
-    private TextView txtTemperatura = (TextView)findViewById(R.id.txtTemperatura);
-    private TextView txtUmidita = (TextView)findViewById(R.id.txtUmidita);
+    TextView txtTemperatura;
+    TextView txtUmidita;
 
     private BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
@@ -54,6 +54,9 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        txtTemperatura = (TextView)findViewById(R.id.txtTemperatura);
+        txtUmidita = (TextView)findViewById(R.id.txtUmidita);
 
         try {
             context = getApplicationContext();

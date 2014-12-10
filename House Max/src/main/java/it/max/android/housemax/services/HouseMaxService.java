@@ -7,6 +7,7 @@ import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.os.Handler;
 import android.os.IBinder;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.io.InputStream;
@@ -66,11 +67,11 @@ public class HouseMaxService extends Service {
     public void onCreate() {
         super.onCreate();
 
-        dati = new String[Integer.parseInt(properties.getProperty("numeroDati"))];
-
         context = getApplicationContext();
 
         Properties properties = this.apriFileProperties(context);
+
+        dati = new String[Integer.parseInt(properties.getProperty("numeroDati"))];
 
         internetUtils = new InternetUtils(properties);
 
@@ -108,11 +109,13 @@ public class HouseMaxService extends Service {
                     // LEGGO LA TEMPERATURA
 //                    URL = URLWebServer + "/dati/ElaboraDati.php?operazione=select&valore=temperatura";
                     URL = URLArduinoServer + "TemperatureRead";
+                    Log.d("URL TemperatureRead", URL);
                     dati[0] = internetUtils.internetResult(URL);
 
                     // LEGGO L'UMIDITA
 //                    URL = URLWebServer + "/dati/ElaboraDati.php?operazione=select&valore=umidita";
                     URL = URLArduinoServer + "HumdityRead";
+                    Log.d("URL HumdityRead", URL);
                     dati[1] = internetUtils.internetResult(URL);
                 } catch(Exception e) {
                 }

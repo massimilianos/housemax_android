@@ -76,7 +76,7 @@ public class InternetUtils {
                 break;
             }
         } catch (Exception e) {
-//            throw new Exception(e.getMessage(), e);
+            throw new Exception(e.getMessage(), e);
         }
 
         return(result);
