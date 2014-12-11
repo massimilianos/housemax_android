@@ -14,7 +14,8 @@
         android:layout_height="fill_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentLeft="true">
+        android:layout_alignParentLeft="true"
+        android:weightSum="1">
 
         <TextView
             android:layout_width="wrap_content"
@@ -23,7 +24,7 @@
             android:id="@+id/lblAppName"
             android:layout_gravity="center_horizontal"
             android:textAlignment="center"
-            android:textSize="30dp"
+            android:textSize="25dp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -31,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="15dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -39,14 +40,14 @@
                 android:text="@string/temperatura"
                 android:id="@+id/lblTemperatura"
                 android:layout_marginRight="50dp"
-                android:textSize="20dp" />
+                android:textSize="15dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/wait_value"
                 android:id="@+id/txtTemperatura"
-                android:textSize="20dp" />
+                android:textSize="15dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -62,16 +63,146 @@
                 android:layout_height="wrap_content"
                 android:text="@string/umidita"
                 android:id="@+id/lblUmidita"
-                android:layout_marginRight="96dp"
-                android:textSize="20dp" />
+                android:layout_marginRight="85dp"
+                android:textSize="15dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/wait_value"
                 android:id="@+id/txtUmidita"
-                android:textSize="20dp"
+                android:textSize="15dp"
                 android:layout_weight="0.07" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_gravity="right"></LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_gravity="right" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="right" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Abilitazione Manuale"
+                android:id="@+id/txtManualControl"
+                android:textSize="15dp"
+                android:layout_marginRight="20dp"
+                android:layout_gravity="center_vertical" />
+
+            <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Controllo Manuale"
+                android:id="@+id/toggleManualControl" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="right" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Interruttore 1"
+                android:id="@+id/txtRelay1"
+                android:textSize="15dp"
+                android:layout_marginRight="69dp"
+                android:layout_gravity="center_vertical" />
+
+            <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Interruttore 1"
+                android:id="@+id/toggleRelay1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Interruttore 2"
+                android:id="@+id/txtRelay2"
+                android:textSize="15dp"
+                android:layout_marginRight="69dp"
+                android:layout_gravity="center_vertical" />
+
+            <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Interruttore 2"
+                android:id="@+id/toggleRelay2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Interruttore 3"
+                android:id="@+id/txtRelay3"
+                android:textSize="15dp"
+                android:layout_marginRight="69dp"
+                android:layout_gravity="center_vertical" />
+
+            <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Interruttore 3"
+                android:id="@+id/toggleRelay3" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Interruttore 4"
+                android:id="@+id/txtRelay4"
+                android:textSize="15dp"
+                android:layout_marginRight="69dp"
+                android:layout_gravity="center_vertical" />
+
+            <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Interruttore 4"
+                android:id="@+id/toggleRelay4" />
         </LinearLayout>
 
     </LinearLayout>

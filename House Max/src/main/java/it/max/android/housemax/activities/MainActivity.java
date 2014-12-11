@@ -8,10 +8,13 @@ import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import java.io.InputStream;
 import java.util.Properties;
@@ -37,6 +40,12 @@ public class MainActivity extends ActionBarActivity {
     TextView txtTemperatura;
     TextView txtUmidita;
 
+    ToggleButton toggleManualControl;
+    ToggleButton toggleRelay1;
+    ToggleButton toggleRelay2;
+    ToggleButton toggleRelay3;
+    ToggleButton toggleRelay4;
+
     private BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -57,6 +66,12 @@ public class MainActivity extends ActionBarActivity {
 
         txtTemperatura = (TextView)findViewById(R.id.txtTemperatura);
         txtUmidita = (TextView)findViewById(R.id.txtUmidita);
+
+        toggleManualControl = (ToggleButton)findViewById(R.id.toggleManualControl);
+        toggleRelay1 = (ToggleButton)findViewById(R.id.toggleRelay1);
+        toggleRelay2 = (ToggleButton)findViewById(R.id.toggleRelay2);
+        toggleRelay3 = (ToggleButton)findViewById(R.id.toggleRelay3);
+        toggleRelay4 = (ToggleButton)findViewById(R.id.toggleRelay4);
 
         try {
             context = getApplicationContext();
@@ -81,6 +96,106 @@ public class MainActivity extends ActionBarActivity {
         serviceHouseMax = new Intent(this, HouseMaxService.class);
         serviceHouseMax.putExtra("dati", dati);
         startService(serviceHouseMax);
+
+        toggleManualControl.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                try {
+                    String URL = internetUtils.creaURLArduinoServer(properties);
+
+                    if (isChecked) {
+                        URL = URL + "ManualControl=ON";
+                        Log.d("URL ManualControl ON", URL);
+                        URL = internetUtils.internetResult(URL);
+                    } else {
+                        URL = URL + "ManualControl=OFF";
+                        Log.d("URL ManualControl OFF", URL);
+                        URL = internetUtils.internetResult(URL);
+                    }
+                } catch(Exception e) {
+                    Toast.makeText(context, "ERRORE CAMBIO CONTROLLO MANUALE (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        toggleRelay1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                try {
+                    String URL = internetUtils.creaURLArduinoServer(properties);
+
+                    if (isChecked) {
+                        URL = URL + "Relay1=ON";
+                        Log.d("URL Relay1 ON", URL);
+                        URL = internetUtils.internetResult(URL);
+                    } else {
+                        URL = URL + "Relay1=OFF";
+                        Log.d("URL Relay1 OFF", URL);
+                        URL = internetUtils.internetResult(URL);
+                    }
+                } catch(Exception e) {
+                    Toast.makeText(context, "ERRORE CAMBIO RELAY 1 (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        toggleRelay2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                try {
+                    String URL = internetUtils.creaURLArduinoServer(properties);
+
+                    if (isChecked) {
+                        URL = URL + "Relay2=ON";
+                        Log.d("URL Relay2 ON", URL);
+                        URL = internetUtils.internetResult(URL);
+                    } else {
+                        URL = URL + "Relay2=OFF";
+                        Log.d("URL Relay2 OFF", URL);
+                        URL = internetUtils.internetResult(URL);
+                    }
+                } catch(Exception e) {
+                    Toast.makeText(context, "ERRORE CAMBIO RELAY 2 (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        toggleRelay3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                try {
+                    String URL = internetUtils.creaURLArduinoServer(properties);
+
+                    if (isChecked) {
+                        URL = URL + "Relay3=ON";
+                        Log.d("URL Relay3 ON", URL);
+                        URL = internetUtils.internetResult(URL);
+                    } else {
+                        URL = URL + "Relay3=OFF";
+                        Log.d("URL Relay3 OFF", URL);
+                        URL = internetUtils.internetResult(URL);
+                    }
+                } catch(Exception e) {
+                    Toast.makeText(context, "ERRORE CAMBIO RELAY 3 (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        toggleRelay4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                try {
+                    String URL = internetUtils.creaURLArduinoServer(properties);
+
+                    if (isChecked) {
+                        URL = URL + "Relay4=ON";
+                        Log.d("URL Relay4 ON", URL);
+                        URL = internetUtils.internetResult(URL);
+                    } else {
+                        URL = URL + "Relay4=OFF";
+                        Log.d("URL Relay4 OFF", URL);
+                        URL = internetUtils.internetResult(URL);
+                    }
+                } catch(Exception e) {
+                    Toast.makeText(context, "ERRORE CAMBIO RELAY 4 (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
 
@@ -125,5 +240,7 @@ public class MainActivity extends ActionBarActivity {
         Toast.makeText(context, "SPENGO SERVIZIO HOUSEMAX", Toast.LENGTH_LONG).show();
 
         stopService(serviceHouseMax);
+
+        System.exit(0);
     }
 }
