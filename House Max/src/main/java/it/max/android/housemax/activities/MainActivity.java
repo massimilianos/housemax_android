@@ -11,7 +11,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Switch;
@@ -40,6 +43,11 @@ public class MainActivity extends Activity {
     TextView txtTemperatura;
     TextView txtUmidita;
 
+    ImageButton btnModalita;
+
+    EditText txtTempControllo;
+    Button btnTempControllo;
+
     Switch swcManualControl;
     Switch swcRelay1;
     Switch swcRelay2;
@@ -67,6 +75,11 @@ public class MainActivity extends Activity {
         txtTemperatura = (TextView) findViewById(R.id.txtTemperatura);
         txtUmidita = (TextView) findViewById(R.id.txtUmidita);
 
+        btnModalita = (ImageButton) findViewById(R.id.btnModalita);
+
+        txtTempControllo = (EditText) findViewById(R.id.txtTempControllo);
+        btnTempControllo = (Button) findViewById(R.id.btnTempControllo);
+
         swcManualControl = (Switch) findViewById(R.id.swcManualControl);
         swcRelay1 = (Switch) findViewById(R.id.swcRelay1);
         swcRelay2 = (Switch) findViewById(R.id.swcRelay2);
@@ -89,6 +102,14 @@ public class MainActivity extends Activity {
             System.exit(-1);
         }
 
+        final String URLArduinoServer = internetUtils.creaURLArduinoServer(properties);
+
+        try {
+            txtTempControllo.setText(internetUtils.internetResult(URLArduinoServer + "ReadTempControl"));
+        } catch(Exception e) {
+            Toast.makeText(context, "ERRORE LETTURA TEMPERATURA CONTROLLO (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
+        }
+
         dati = new String[Integer.parseInt(properties.getProperty("numeroDati"))];
 
         Toast.makeText(context, "ACCENDO SERVIZIO HOUSEMAX", Toast.LENGTH_LONG).show();
@@ -100,14 +121,14 @@ public class MainActivity extends Activity {
         swcManualControl.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 try {
-                    String URL = internetUtils.creaURLArduinoServer(properties);
+                    String URL;
 
                     if (isChecked) {
-                        URL = URL + "ManualControl=ON";
+                        URL = URLArduinoServer + "ManualControl=ON";
                         Log.d("URL ManualControl ON", URL);
                         URL = internetUtils.internetResult(URL);
                     } else {
-                        URL = URL + "ManualControl=OFF";
+                        URL = URLArduinoServer + "ManualControl=OFF";
                         Log.d("URL ManualControl OFF", URL);
                         URL = internetUtils.internetResult(URL);
                     }
@@ -120,14 +141,14 @@ public class MainActivity extends Activity {
         swcRelay1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 try {
-                    String URL = internetUtils.creaURLArduinoServer(properties);
+                    String URL;
 
                     if (isChecked) {
-                        URL = URL + "Relay1=ON";
+                        URL = URLArduinoServer + "Relay1=ON";
                         Log.d("URL Relay1 ON", URL);
                         URL = internetUtils.internetResult(URL);
                     } else {
-                        URL = URL + "Relay1=OFF";
+                        URL = URLArduinoServer + "Relay1=OFF";
                         Log.d("URL Relay1 OFF", URL);
                         URL = internetUtils.internetResult(URL);
                     }
@@ -140,14 +161,14 @@ public class MainActivity extends Activity {
         swcRelay2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 try {
-                    String URL = internetUtils.creaURLArduinoServer(properties);
+                    String URL;
 
                     if (isChecked) {
-                        URL = URL + "Relay2=ON";
+                        URL = URLArduinoServer + "Relay2=ON";
                         Log.d("URL Relay2 ON", URL);
                         URL = internetUtils.internetResult(URL);
                     } else {
-                        URL = URL + "Relay2=OFF";
+                        URL = URLArduinoServer + "Relay2=OFF";
                         Log.d("URL Relay2 OFF", URL);
                         URL = internetUtils.internetResult(URL);
                     }
@@ -160,14 +181,14 @@ public class MainActivity extends Activity {
         swcRelay3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 try {
-                    String URL = internetUtils.creaURLArduinoServer(properties);
+                    String URL;
 
                     if (isChecked) {
-                        URL = URL + "Relay3=ON";
+                        URL = URLArduinoServer + "Relay3=ON";
                         Log.d("URL Relay3 ON", URL);
                         URL = internetUtils.internetResult(URL);
                     } else {
-                        URL = URL + "Relay3=OFF";
+                        URL = URLArduinoServer + "Relay3=OFF";
                         Log.d("URL Relay3 OFF", URL);
                         URL = internetUtils.internetResult(URL);
                     }
@@ -180,14 +201,14 @@ public class MainActivity extends Activity {
         swcRelay4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 try {
-                    String URL = internetUtils.creaURLArduinoServer(properties);
+                    String URL;
 
                     if (isChecked) {
-                        URL = URL + "Relay4=ON";
+                        URL = URLArduinoServer + "Relay4=ON";
                         Log.d("URL Relay4 ON", URL);
                         URL = internetUtils.internetResult(URL);
                     } else {
-                        URL = URL + "Relay4=OFF";
+                        URL = URLArduinoServer + "Relay4=OFF";
                         Log.d("URL Relay4 OFF", URL);
                         URL = internetUtils.internetResult(URL);
                     }

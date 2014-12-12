@@ -23,7 +23,7 @@ public class HouseMaxService extends Service {
     public static final String NOTIFICATION = "it.max.android.housemax.services";
 
 //    public static final long NOTIFY_INTERVAL = 1 * 60000; // 60 secondi = 1 minuto
-    public static final long NOTIFY_INTERVAL = 1 * 2000; // 2 secondi
+    public static final long NOTIFY_INTERVAL = 1 * 10000; // 10 secondi
 
     private Handler mHandler = new Handler();
     private Timer mTimer = null;
