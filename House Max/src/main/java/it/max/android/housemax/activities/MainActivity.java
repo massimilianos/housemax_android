@@ -1,12 +1,12 @@
 package it.max.android.housemax.activities;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -14,7 +14,7 @@ import android.view.MenuItem;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
+import android.widget.Switch;
 
 import java.io.InputStream;
 import java.util.Properties;
@@ -23,7 +23,7 @@ import it.max.android.housemax.R;
 import it.max.android.housemax.services.HouseMaxService;
 import it.max.android.housemax.utils.InternetUtils;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
     Context context = null;
 
     private Resources resources = null;
@@ -40,11 +40,11 @@ public class MainActivity extends ActionBarActivity {
     TextView txtTemperatura;
     TextView txtUmidita;
 
-    ToggleButton toggleManualControl;
-    ToggleButton toggleRelay1;
-    ToggleButton toggleRelay2;
-    ToggleButton toggleRelay3;
-    ToggleButton toggleRelay4;
+    Switch swcManualControl;
+    Switch swcRelay1;
+    Switch swcRelay2;
+    Switch swcRelay3;
+    Switch swcRelay4;
 
     private BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
@@ -64,14 +64,14 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        txtTemperatura = (TextView)findViewById(R.id.txtTemperatura);
-        txtUmidita = (TextView)findViewById(R.id.txtUmidita);
+        txtTemperatura = (TextView) findViewById(R.id.txtTemperatura);
+        txtUmidita = (TextView) findViewById(R.id.txtUmidita);
 
-        toggleManualControl = (ToggleButton)findViewById(R.id.toggleManualControl);
-        toggleRelay1 = (ToggleButton)findViewById(R.id.toggleRelay1);
-        toggleRelay2 = (ToggleButton)findViewById(R.id.toggleRelay2);
-        toggleRelay3 = (ToggleButton)findViewById(R.id.toggleRelay3);
-        toggleRelay4 = (ToggleButton)findViewById(R.id.toggleRelay4);
+        swcManualControl = (Switch) findViewById(R.id.swcManualControl);
+        swcRelay1 = (Switch) findViewById(R.id.swcRelay1);
+        swcRelay2 = (Switch) findViewById(R.id.swcRelay2);
+        swcRelay3 = (Switch) findViewById(R.id.swcRelay3);
+        swcRelay4 = (Switch) findViewById(R.id.swcRelay4);
 
         try {
             context = getApplicationContext();
@@ -97,7 +97,7 @@ public class MainActivity extends ActionBarActivity {
         serviceHouseMax.putExtra("dati", dati);
         startService(serviceHouseMax);
 
-        toggleManualControl.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        swcManualControl.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 try {
                     String URL = internetUtils.creaURLArduinoServer(properties);
@@ -117,7 +117,7 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        toggleRelay1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        swcRelay1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 try {
                     String URL = internetUtils.creaURLArduinoServer(properties);
@@ -137,7 +137,7 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        toggleRelay2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        swcRelay2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 try {
                     String URL = internetUtils.creaURLArduinoServer(properties);
@@ -157,7 +157,7 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        toggleRelay3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        swcRelay3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 try {
                     String URL = internetUtils.creaURLArduinoServer(properties);
@@ -177,7 +177,7 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        toggleRelay4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        swcRelay4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 try {
                     String URL = internetUtils.creaURLArduinoServer(properties);
