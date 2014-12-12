@@ -66,6 +66,8 @@ public class MainActivity extends Activity {
                 internetUtils.internetResult(URLArduinoServer + "SetModalita=" + MODALITA_INVERNO);
                 btnModalita.setImageResource(R.drawable.winter);
                 lblTempControllo.setText("Min.");
+
+                internetUtils.internetResult(URLArduinoServer + "TemperatureRead");
             } catch(Exception e) {
                 Toast.makeText(context, "ERRORE IMPOSTAZIONE MODALITA' INVERNO (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
             }
@@ -74,6 +76,8 @@ public class MainActivity extends Activity {
                 internetUtils.internetResult(URLArduinoServer + "SetModalita=" + MODALITA_ESTATE);
                 btnModalita.setImageResource(R.drawable.summer);
                 lblTempControllo.setText("Max.");
+
+                internetUtils.internetResult(URLArduinoServer + "TemperatureRead");
             } catch(Exception e) {
                 Toast.makeText(context, "ERRORE IMPOSTAZIONE MODALITA' ESTATE (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
             }
