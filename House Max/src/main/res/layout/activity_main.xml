@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/temperatura"
                 android:id="@+id/lblTemperatura"
-                android:layout_marginRight="49dp"
+                android:layout_marginRight="50dp"
                 android:textSize="15dp" />
 
             <TextView
@@ -111,19 +111,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Temperatura Controllo"
-                android:id="@+id/lblTempControllo"
-                android:layout_gravity="center_vertical" />
+                android:id="@+id/lblLabelTempControllo"
+                android:layout_gravity="center" />
 
             <EditText
-                android:layout_width="50dp"
+                android:layout_width="48dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/txtTempControllo"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="10dp"
-                android:inputType="numberDecimal" />
+                android:inputType="numberDecimal"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Max."
+                android:id="@+id/lblTempControllo"
+                android:layout_gravity="center" />
 
             <Button
-                android:layout_width="50dp"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:text="OK"
                 android:id="@+id/btnTempControllo"

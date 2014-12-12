@@ -7,10 +7,12 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -27,6 +29,9 @@ import it.max.android.housemax.services.HouseMaxService;
 import it.max.android.housemax.utils.InternetUtils;
 
 public class MainActivity extends Activity {
+    private static final Integer MODALITA_INVERNO = 0;
+    private static final Integer MODALITA_ESTATE  = 1;
+
     Context context = null;
 
     private Resources resources = null;
@@ -46,6 +51,7 @@ public class MainActivity extends Activity {
     ImageButton btnModalita;
 
     EditText txtTempControllo;
+    TextView lblTempControllo;
     Button btnTempControllo;
 
     Switch swcManualControl;
@@ -53,6 +59,40 @@ public class MainActivity extends Activity {
     Switch swcRelay2;
     Switch swcRelay3;
     Switch swcRelay4;
+
+    private void impostaModalita(String URLArduinoServer, Integer modalita) {
+        if (modalita == MODALITA_INVERNO) {
+            try {
+                internetUtils.internetResult(URLArduinoServer + "SetModalita=" + MODALITA_INVERNO);
+                btnModalita.setImageResource(R.drawable.winter);
+                lblTempControllo.setText("Min.");
+            } catch(Exception e) {
+                Toast.makeText(context, "ERRORE IMPOSTAZIONE MODALITA' INVERNO (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            try {
+                internetUtils.internetResult(URLArduinoServer + "SetModalita=" + MODALITA_ESTATE);
+                btnModalita.setImageResource(R.drawable.summer);
+                lblTempControllo.setText("Max.");
+            } catch(Exception e) {
+                Toast.makeText(context, "ERRORE IMPOSTAZIONE MODALITA' ESTATE (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void disabilitaInterruttori() {
+        swcRelay1.setEnabled(false);
+        swcRelay2.setEnabled(false);
+        swcRelay3.setEnabled(false);
+        swcRelay4.setEnabled(false);
+    }
+
+    private void abilitaInterruttori() {
+        swcRelay1.setEnabled(true);
+        swcRelay2.setEnabled(true);
+        swcRelay3.setEnabled(true);
+        swcRelay4.setEnabled(true);
+    }
 
     private BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
@@ -78,6 +118,7 @@ public class MainActivity extends Activity {
         btnModalita = (ImageButton) findViewById(R.id.btnModalita);
 
         txtTempControllo = (EditText) findViewById(R.id.txtTempControllo);
+        lblTempControllo = (TextView) findViewById(R.id.lblTempControllo);
         btnTempControllo = (Button) findViewById(R.id.btnTempControllo);
 
         swcManualControl = (Switch) findViewById(R.id.swcManualControl);
@@ -106,9 +147,16 @@ public class MainActivity extends Activity {
 
         try {
             txtTempControllo.setText(internetUtils.internetResult(URLArduinoServer + "ReadTempControl"));
+
+            String sModalitaAttuale = internetUtils.internetResult(URLArduinoServer + "ReadModalita");
+            Integer iModalitaAttuale = Integer.valueOf(sModalitaAttuale);
+
+            impostaModalita(URLArduinoServer, iModalitaAttuale);
         } catch(Exception e) {
             Toast.makeText(context, "ERRORE LETTURA TEMPERATURA CONTROLLO (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
         }
+
+        this.disabilitaInterruttori();
 
         dati = new String[Integer.parseInt(properties.getProperty("numeroDati"))];
 
@@ -117,6 +165,40 @@ public class MainActivity extends Activity {
         serviceHouseMax = new Intent(this, HouseMaxService.class);
         serviceHouseMax.putExtra("dati", dati);
         startService(serviceHouseMax);
+
+        btnModalita.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                try {
+                    String sModalitaAttuale = internetUtils.internetResult(URLArduinoServer + "ReadModalita");
+                    Integer iModalitaAttuale = Integer.valueOf(sModalitaAttuale);
+
+                    if (iModalitaAttuale == MODALITA_INVERNO) {
+                        impostaModalita(URLArduinoServer, MODALITA_ESTATE);
+                    } else {
+                        impostaModalita(URLArduinoServer, MODALITA_INVERNO);
+                    }
+                } catch(Exception e) {
+                    Toast.makeText(context, "ERRORE LETTURA MODALITA (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+        });
+
+        btnTempControllo.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                try {
+                    String temperaturaControlloNuova = txtTempControllo.getText().toString();
+                    internetUtils.internetResult(URLArduinoServer + "SetTempControl=" + temperaturaControlloNuova);
+                } catch(Exception e) {
+                    Toast.makeText(context, "ERRORE IMPOSTAZIONE TEMPERATURA CONTROLLO (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+        });
 
         swcManualControl.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -127,10 +209,12 @@ public class MainActivity extends Activity {
                         URL = URLArduinoServer + "ManualControl=ON";
                         Log.d("URL ManualControl ON", URL);
                         URL = internetUtils.internetResult(URL);
+                        abilitaInterruttori();
                     } else {
                         URL = URLArduinoServer + "ManualControl=OFF";
                         Log.d("URL ManualControl OFF", URL);
                         URL = internetUtils.internetResult(URL);
+                        disabilitaInterruttori();
                     }
                 } catch(Exception e) {
                     Toast.makeText(context, "ERRORE CAMBIO CONTROLLO MANUALE (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
