@@ -7,5 +7,10 @@
     <string name="wait_value">- - -</string>
     <string name="temperatura">Temperatura</string>
     <string name="umidita">Umidita</string>
+    <string name="relay1">Riscaldamento</string>
+    <string name="relay2">Condizionatore</string>
+    <string name="relay3">Porta Ingresso</string>
+    <string name="relay4">Portone</string>
+    <string name="title_activity_accensione_programmata">Accensione Programmata</string>
 
 </resources>

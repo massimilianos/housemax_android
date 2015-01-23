@@ -9,6 +9,7 @@ import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,7 +23,11 @@ import android.widget.Toast;
 import android.widget.Switch;
 
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Properties;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import it.max.android.housemax.R;
 import it.max.android.housemax.services.HouseMaxService;
@@ -59,6 +64,8 @@ public class MainActivity extends Activity {
     Switch swcRelay2;
     Switch swcRelay3;
     Switch swcRelay4;
+
+    Button btnAccensioneProgrammata;
 
     private void impostaModalita(String URLArduinoServer, Integer modalita) {
         if (modalita == MODALITA_INVERNO) {
@@ -131,6 +138,8 @@ public class MainActivity extends Activity {
         swcRelay3 = (Switch) findViewById(R.id.swcRelay3);
         swcRelay4 = (Switch) findViewById(R.id.swcRelay4);
 
+        btnAccensioneProgrammata = (Button) findViewById(R.id.btnAccensioneProgrammata);
+
         try {
             context = getApplicationContext();
 
@@ -174,18 +183,18 @@ public class MainActivity extends Activity {
 
             @Override
             public void onClick(View arg0) {
-                try {
-                    String sModalitaAttuale = internetUtils.internetResult(URLArduinoServer + "ReadModalita");
-                    Integer iModalitaAttuale = Integer.valueOf(sModalitaAttuale);
+            try {
+                String sModalitaAttuale = internetUtils.internetResult(URLArduinoServer + "ReadModalita");
+                Integer iModalitaAttuale = Integer.valueOf(sModalitaAttuale);
 
-                    if (iModalitaAttuale == MODALITA_INVERNO) {
-                        impostaModalita(URLArduinoServer, MODALITA_ESTATE);
-                    } else {
-                        impostaModalita(URLArduinoServer, MODALITA_INVERNO);
-                    }
-                } catch(Exception e) {
-                    Toast.makeText(context, "ERRORE LETTURA MODALITA (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
+                if (iModalitaAttuale == MODALITA_INVERNO) {
+                    impostaModalita(URLArduinoServer, MODALITA_ESTATE);
+                } else {
+                    impostaModalita(URLArduinoServer, MODALITA_INVERNO);
                 }
+            } catch(Exception e) {
+                Toast.makeText(context, "ERRORE LETTURA MODALITA (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
+            }
             }
 
         });
@@ -194,116 +203,131 @@ public class MainActivity extends Activity {
 
             @Override
             public void onClick(View arg0) {
-                try {
-                    String temperaturaControlloNuova = txtTempControllo.getText().toString();
-                    internetUtils.internetResult(URLArduinoServer + "SetTempControl=" + temperaturaControlloNuova);
-                } catch(Exception e) {
-                    Toast.makeText(context, "ERRORE IMPOSTAZIONE TEMPERATURA CONTROLLO (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
-                }
+            try {
+                String temperaturaControlloNuova = txtTempControllo.getText().toString();
+                internetUtils.internetResult(URLArduinoServer + "SetTempControl=" + temperaturaControlloNuova);
+            } catch(Exception e) {
+                Toast.makeText(context, "ERRORE IMPOSTAZIONE TEMPERATURA CONTROLLO (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
+            }
             }
 
         });
 
         swcManualControl.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                try {
-                    String URL;
+            try {
+                String URL;
 
-                    if (isChecked) {
-                        URL = URLArduinoServer + "ManualControl=ON";
-                        Log.d("URL ManualControl ON", URL);
-                        URL = internetUtils.internetResult(URL);
-                        abilitaInterruttori();
-                    } else {
-                        URL = URLArduinoServer + "ManualControl=OFF";
-                        Log.d("URL ManualControl OFF", URL);
-                        URL = internetUtils.internetResult(URL);
-                        disabilitaInterruttori();
-                    }
-                } catch(Exception e) {
-                    Toast.makeText(context, "ERRORE CAMBIO CONTROLLO MANUALE (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
+                if (isChecked) {
+                    URL = URLArduinoServer + "ManualControl=ON";
+                    Log.d("URL ManualControl ON", URL);
+                    URL = internetUtils.internetResult(URL);
+                    abilitaInterruttori();
+                } else {
+                    URL = URLArduinoServer + "ManualControl=OFF";
+                    Log.d("URL ManualControl OFF", URL);
+                    URL = internetUtils.internetResult(URL);
+                    disabilitaInterruttori();
                 }
+            } catch(Exception e) {
+                Toast.makeText(context, "ERRORE CAMBIO CONTROLLO MANUALE (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
+            }
             }
         });
 
         swcRelay1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                try {
-                    String URL;
+            try {
+                String URL;
 
-                    if (isChecked) {
-                        URL = URLArduinoServer + "Relay1=ON";
-                        Log.d("URL Relay1 ON", URL);
-                        URL = internetUtils.internetResult(URL);
-                    } else {
-                        URL = URLArduinoServer + "Relay1=OFF";
-                        Log.d("URL Relay1 OFF", URL);
-                        URL = internetUtils.internetResult(URL);
-                    }
-                } catch(Exception e) {
-                    Toast.makeText(context, "ERRORE CAMBIO RELAY 1 (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
+                if (isChecked) {
+                    URL = URLArduinoServer + "Relay1=ON";
+                    Log.d("URL Relay1 ON", URL);
+                    URL = internetUtils.internetResult(URL);
+                } else {
+                    URL = URLArduinoServer + "Relay1=OFF";
+                    Log.d("URL Relay1 OFF", URL);
+                    URL = internetUtils.internetResult(URL);
                 }
+            } catch(Exception e) {
+                Toast.makeText(context, "ERRORE CAMBIO RELAY 1 (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
+            }
             }
         });
 
         swcRelay2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                try {
-                    String URL;
+            try {
+                String URL;
 
-                    if (isChecked) {
-                        URL = URLArduinoServer + "Relay2=ON";
-                        Log.d("URL Relay2 ON", URL);
-                        URL = internetUtils.internetResult(URL);
-                    } else {
-                        URL = URLArduinoServer + "Relay2=OFF";
-                        Log.d("URL Relay2 OFF", URL);
-                        URL = internetUtils.internetResult(URL);
-                    }
-                } catch(Exception e) {
-                    Toast.makeText(context, "ERRORE CAMBIO RELAY 2 (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
+                if (isChecked) {
+                    URL = URLArduinoServer + "Relay2=ON";
+                    Log.d("URL Relay2 ON", URL);
+                    URL = internetUtils.internetResult(URL);
+                } else {
+                    URL = URLArduinoServer + "Relay2=OFF";
+                    Log.d("URL Relay2 OFF", URL);
+                    URL = internetUtils.internetResult(URL);
                 }
+            } catch(Exception e) {
+                Toast.makeText(context, "ERRORE CAMBIO RELAY 2 (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
+            }
             }
         });
 
         swcRelay3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                try {
-                    String URL;
+            try {
+                String URL;
 
-                    if (isChecked) {
-                        URL = URLArduinoServer + "Relay3=ON";
-                        Log.d("URL Relay3 ON", URL);
-                        URL = internetUtils.internetResult(URL);
-                    } else {
-                        URL = URLArduinoServer + "Relay3=OFF";
-                        Log.d("URL Relay3 OFF", URL);
-                        URL = internetUtils.internetResult(URL);
-                    }
-                } catch(Exception e) {
-                    Toast.makeText(context, "ERRORE CAMBIO RELAY 3 (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
+                if (isChecked) {
+                    URL = URLArduinoServer + "Relay3=ON";
+                    Log.d("URL Relay3 ON", URL);
+                    URL = internetUtils.internetResult(URL);
+                } else {
+                    URL = URLArduinoServer + "Relay3=OFF";
+                    Log.d("URL Relay3 OFF", URL);
+                    URL = internetUtils.internetResult(URL);
                 }
+            } catch(Exception e) {
+                Toast.makeText(context, "ERRORE CAMBIO RELAY 3 (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
+            }
             }
         });
 
         swcRelay4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                try {
-                    String URL;
+            try {
+                String URL;
 
-                    if (isChecked) {
-                        URL = URLArduinoServer + "Relay4=ON";
-                        Log.d("URL Relay4 ON", URL);
-                        URL = internetUtils.internetResult(URL);
-                    } else {
-                        URL = URLArduinoServer + "Relay4=OFF";
-                        Log.d("URL Relay4 OFF", URL);
-                        URL = internetUtils.internetResult(URL);
-                    }
-                } catch(Exception e) {
-                    Toast.makeText(context, "ERRORE CAMBIO RELAY 4 (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
+                if (isChecked) {
+                    URL = URLArduinoServer + "Relay4=ON";
+                    Log.d("URL Relay4 ON", URL);
+                    URL = internetUtils.internetResult(URL);
+                } else {
+                    URL = URLArduinoServer + "Relay4=OFF";
+                    Log.d("URL Relay4 OFF", URL);
+                    URL = internetUtils.internetResult(URL);
                 }
+            } catch(Exception e) {
+                Toast.makeText(context, "ERRORE CAMBIO RELAY 4 (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
             }
+            }
+        });
+
+        btnAccensioneProgrammata.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+            try {
+                Intent intentAccensioneProgrammata = new Intent(MainActivity.this, AccensioneProgrammataActivity.class);
+                startActivity(intentAccensioneProgrammata);
+                finish();
+            } catch(Exception e) {
+                Toast.makeText(context, "ERRORE CHIAMATA ACCENSIONE PROGRAMMATA (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
+            }
+            }
+
         });
     }
 

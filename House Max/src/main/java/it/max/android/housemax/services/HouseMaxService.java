@@ -25,8 +25,8 @@ public class HouseMaxService extends Service {
 //    public static final long NOTIFY_INTERVAL = 1 * 60000; // 60 secondi = 1 minuto
     public static final long NOTIFY_INTERVAL = 1 * 10000; // 10 secondi
 
-    private Handler mHandler = new Handler();
     private Timer mTimer = null;
+    private Handler mHandler = new Handler();
 
     private InternetUtils internetUtils = null;
 
@@ -84,7 +84,7 @@ public class HouseMaxService extends Service {
             mTimer = new Timer();
         }
 
-        mTimer.scheduleAtFixedRate(new TimeDisplayTimerTask(), 0, NOTIFY_INTERVAL);
+        mTimer.scheduleAtFixedRate(new UpdateTempHumidTimerTask(), 0, NOTIFY_INTERVAL);
 
         Toast.makeText(context, "SERVIZIO HOUSEMAX ACCESO", Toast.LENGTH_LONG).show();
     }
@@ -97,7 +97,7 @@ public class HouseMaxService extends Service {
         sendBroadcast(intent);
     }
 
-    class TimeDisplayTimerTask extends TimerTask {
+    class UpdateTempHumidTimerTask extends TimerTask {
         @Override
         public void run() {
             mHandler.post(new Runnable() {

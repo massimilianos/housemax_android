@@ -2,7 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="it.max.android.housemax" >
 
-    <uses-sdk android:minSdkVersion="14" />
+    <uses-sdk
+        android:minSdkVersion="10"
+        android:targetSdkVersion="15" />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -25,5 +35,15 @@
             android:name=".services.HouseMaxService"
             android:exported="false" >
         </service>
+
+        <activity
+            android:name=".activities.AccensioneProgrammataActivity"
+            android:label="@string/title_activity_accensione_programmata"
+            android:parentActivityName=".activities.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="it.max.android.housemax.activities.MainActivity" />
+        </activity>
     </application>
+
 </manifest>

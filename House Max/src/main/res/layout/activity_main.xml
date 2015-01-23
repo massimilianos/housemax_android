@@ -105,7 +105,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_gravity="center_vertical" >
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="-10dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -150,7 +151,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Abilitazione Manuale"
-                android:id="@+id/swcManualControl" />
+                android:id="@+id/swcManualControl"
+                android:layout_marginTop="0dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -163,7 +165,7 @@
             <Switch
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Interruttore 1"
+                android:text="@string/relay1"
                 android:id="@+id/swcRelay1" />
         </LinearLayout>
 
@@ -177,7 +179,7 @@
             <Switch
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Interruttore 2"
+                android:text="@string/relay2"
                 android:id="@+id/swcRelay2" />
         </LinearLayout>
 
@@ -191,7 +193,7 @@
             <Switch
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Interruttore 3"
+                android:text="@string/relay3"
                 android:id="@+id/swcRelay3" />
         </LinearLayout>
 
@@ -205,9 +207,18 @@
             <Switch
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Interruttore 4"
-                android:id="@+id/swcRelay4" />
+                android:text="@string/relay4"
+                android:id="@+id/swcRelay4"
+                android:layout_marginBottom="5dp" />
         </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Accensione Programmata"
+            android:id="@+id/btnAccensioneProgrammata"
+            android:layout_gravity="center_horizontal"
+            android:textSize="15dp" />
 
     </LinearLayout>
 </RelativeLayout>
