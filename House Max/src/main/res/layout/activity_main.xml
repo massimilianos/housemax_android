@@ -1,224 +1,252 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="it.max.android.housemax.activities.MainActivity">
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentLeft="true"
-        android:weightSum="1">
+        android:stretchColumns="1,2"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin">
 
-        <TextView
+        <TableRow
+            android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:id="@+id/lblAppName"
-            android:layout_gravity="center_horizontal"
-            android:textAlignment="center"
-            android:textSize="25dp"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp">
+            android:weightSum="1">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_span="4"
+                android:text="@string/app_name"
+                android:id="@+id/lblAppName"
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="center"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+        </TableRow>
+
+        <TableRow
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15sp">
+
+            <TextView
                 android:text="@string/temperatura"
                 android:id="@+id/lblTemperatura"
-                android:layout_marginRight="50dp"
-                android:textSize="15dp" />
+                android:layout_marginEnd="50sp"
+                android:layout_span="1"
+                android:textSize="15sp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="@string/wait_value"
+                android:layout_gravity="center"
                 android:id="@+id/txtTemperatura"
-                android:textSize="15dp" />
-        </LinearLayout>
+                android:layout_span="1"
+                android:layout_column="1"
+                android:textSize="15sp" />
+        </TableRow>
 
-        <LinearLayout
+        <TableRow
             android:orientation="horizontal"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_gravity="end"
             android:weightSum="1"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10sp">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="@string/umidita"
                 android:id="@+id/lblUmidita"
-                android:layout_marginRight="85dp"
-                android:textSize="15dp" />
+                android:layout_marginEnd="85sp"
+                android:layout_span="1"
+                android:textSize="15sp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="@string/wait_value"
+                android:layout_gravity="center"
                 android:id="@+id/txtUmidita"
-                android:textSize="15dp"
+                android:textSize="15sp"
+                android:layout_span="1"
+                android:layout_column="1"
                 android:layout_weight="0.07" />
-        </LinearLayout>
+        </TableRow>
 
-        <LinearLayout
+        <TableRow
             android:orientation="horizontal"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_gravity="right">
+            android:layout_marginTop="5sp"
+            android:layout_gravity="end">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Modalita&apos;"
+                android:text="@string/modalita"
                 android:id="@+id/lblModalita"
                 android:layout_gravity="center_vertical"
-                android:layout_marginRight="68dp" />
+                android:layout_span="1"
+                android:textSize="15sp"
+                android:layout_marginEnd="68sp" />
 
             <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="50sp"
+                android:layout_height="50sp"
+                android:contentDescription="@null"
                 android:id="@+id/btnModalita"
                 android:focusable="true"
                 android:src="@drawable/winter"
                 android:layout_gravity="center"
+                android:layout_span="1"
+                android:layout_column="1"
                 android:clickable="true" />
-        </LinearLayout>
+        </TableRow>
 
-        <LinearLayout
+        <TableRow
             android:orientation="horizontal"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="10sp"
             android:layout_gravity="center_vertical"
-            android:layout_marginBottom="-10dp">
+            android:layout_marginBottom="-10sp">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Temperatura Controllo"
+                android:text="@string/temperaturaControllo"
                 android:id="@+id/lblLabelTempControllo"
+                android:layout_span="1"
+                android:textSize="15sp"
                 android:layout_gravity="center" />
 
             <EditText
-                android:layout_width="48dp"
-                android:layout_height="wrap_content"
                 android:id="@+id/txtTempControllo"
                 android:layout_gravity="center_vertical"
                 android:inputType="numberDecimal"
-                android:layout_marginLeft="3dp"
-                android:layout_marginRight="3dp" />
+                android:layout_span="1"
+                android:layout_marginLeft="5sp"
+                android:layout_marginRight="3sp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="Max."
                 android:id="@+id/lblTempControllo"
+                android:layout_span="1"
+                android:textSize="15sp"
                 android:layout_gravity="center" />
 
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="40sp"
+                android:layout_width="100dp"
                 android:text="OK"
                 android:id="@+id/btnTempControllo"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="8dp" />
-        </LinearLayout>
+                android:layout_span="1"
+                android:layout_gravity="center" />
+        </TableRow>
 
-        <LinearLayout
+        <TableRow
             android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="right" >
-
-            <Switch
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Abilitazione Manuale"
-                android:id="@+id/swcManualControl"
-                android:layout_marginTop="0dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_gravity="right" >
-
-            <Switch
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/relay1"
-                android:id="@+id/swcRelay1" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_gravity="center_horizontal" >
-
-            <Switch
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/relay2"
-                android:id="@+id/swcRelay2" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_gravity="center_horizontal" >
-
-            <Switch
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/relay3"
-                android:id="@+id/swcRelay3" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_gravity="center_horizontal" >
-
-            <Switch
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/relay4"
-                android:id="@+id/swcRelay4"
-                android:layout_marginBottom="5dp" />
-        </LinearLayout>
-
-        <Button
             android:layout_width="wrap_content"
-            android:layout_height="100px"
-            android:text="Accensione Programmata"
-            android:id="@+id/btnAccensioneProgrammata"
-            android:layout_gravity="center_horizontal"
-            android:textSize="15dp" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20sp"
+            android:layout_gravity="end" >
 
-    </LinearLayout>
-</RelativeLayout>
+            <Switch
+                android:text="Abilitazione Manuale"
+                android:textSize="15sp"
+                android:id="@+id/swcManualControl"
+                android:layout_span="4"
+                android:layout_marginTop="0sp" />
+        </TableRow>
+
+        <TableRow
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5sp"
+            android:layout_gravity="end" >
+
+            <Switch
+                android:text="@string/relay1"
+                android:textSize="15sp"
+                android:layout_span="4"
+                android:id="@+id/swcRelay1" />
+        </TableRow>
+
+        <TableRow
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5sp"
+            android:layout_gravity="center_horizontal" >
+
+            <Switch
+                android:text="@string/relay2"
+                android:textSize="15sp"
+                android:layout_span="4"
+                android:id="@+id/swcRelay2" />
+        </TableRow>
+
+        <TableRow
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5sp"
+            android:layout_gravity="center_horizontal" >
+
+            <Switch
+                android:text="@string/relay3"
+                android:textSize="15sp"
+                android:layout_span="4"
+                android:id="@+id/swcRelay3" />
+        </TableRow>
+
+        <TableRow
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5sp"
+            android:layout_gravity="center_horizontal" >
+
+            <Switch
+                android:text="@string/relay4"
+                android:textSize="15sp"
+                android:layout_span="4"
+                android:id="@+id/swcRelay4"
+                android:layout_marginBottom="5sp" />
+        </TableRow>
+
+        <TableRow
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5sp"
+            android:layout_gravity="center_horizontal" >
+
+            <Button
+                android:layout_height="40dp"
+                android:text="@string/title_activity_accensione_programmata"
+                android:id="@+id/btnAccensioneProgrammata"
+                android:layout_gravity="center_horizontal"
+                android:layout_span="4"
+                android:textSize="15sp" />
+        </TableRow>
+
+        <TableRow
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5sp"
+            android:layout_gravity="center_horizontal" >
+            <Button
+                android:layout_height="40dp"
+                android:text="@string/attiva_bluetooth"
+                android:id="@+id/btnBluetoothOnOff"
+                android:layout_gravity="center_horizontal"
+                android:layout_span="4"
+                android:textSize="15sp" />
+        </TableRow>
+    </TableLayout>
+</LinearLayout>

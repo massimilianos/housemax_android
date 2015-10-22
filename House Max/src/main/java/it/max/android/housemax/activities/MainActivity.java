@@ -67,6 +67,8 @@ public class MainActivity extends Activity {
 
     Button btnAccensioneProgrammata;
 
+    Button btnBluetoothOnOff;
+
     private void impostaModalita(String URLArduinoServer, Integer modalita) {
         if (modalita == MODALITA_INVERNO) {
             try {
@@ -183,18 +185,18 @@ public class MainActivity extends Activity {
 
             @Override
             public void onClick(View arg0) {
-            try {
-                String sModalitaAttuale = internetUtils.internetResult(URLArduinoServer + "ReadModalita");
-                Integer iModalitaAttuale = Integer.valueOf(sModalitaAttuale);
+                try {
+                    String sModalitaAttuale = internetUtils.internetResult(URLArduinoServer + "ReadModalita");
+                    Integer iModalitaAttuale = Integer.valueOf(sModalitaAttuale);
 
-                if (iModalitaAttuale == MODALITA_INVERNO) {
-                    impostaModalita(URLArduinoServer, MODALITA_ESTATE);
-                } else {
-                    impostaModalita(URLArduinoServer, MODALITA_INVERNO);
+                    if (iModalitaAttuale == MODALITA_INVERNO) {
+                        impostaModalita(URLArduinoServer, MODALITA_ESTATE);
+                    } else {
+                        impostaModalita(URLArduinoServer, MODALITA_INVERNO);
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(context, "ERRORE LETTURA MODALITA (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
                 }
-            } catch(Exception e) {
-                Toast.makeText(context, "ERRORE LETTURA MODALITA (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
-            }
             }
 
         });
@@ -215,23 +217,23 @@ public class MainActivity extends Activity {
 
         swcManualControl.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            try {
-                String URL;
+                try {
+                    String URL;
 
-                if (isChecked) {
-                    URL = URLArduinoServer + "ManualControl=ON";
-                    Log.d("URL ManualControl ON", URL);
-                    URL = internetUtils.internetResult(URL);
-                    abilitaInterruttori();
-                } else {
-                    URL = URLArduinoServer + "ManualControl=OFF";
-                    Log.d("URL ManualControl OFF", URL);
-                    URL = internetUtils.internetResult(URL);
-                    disabilitaInterruttori();
+                    if (isChecked) {
+                        URL = URLArduinoServer + "ManualControl=ON";
+                        Log.d("URL ManualControl ON", URL);
+                        URL = internetUtils.internetResult(URL);
+                        abilitaInterruttori();
+                    } else {
+                        URL = URLArduinoServer + "ManualControl=OFF";
+                        Log.d("URL ManualControl OFF", URL);
+                        URL = internetUtils.internetResult(URL);
+                        disabilitaInterruttori();
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(context, "ERRORE CAMBIO CONTROLLO MANUALE (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
                 }
-            } catch(Exception e) {
-                Toast.makeText(context, "ERRORE CAMBIO CONTROLLO MANUALE (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
-            }
             }
         });
 
@@ -319,13 +321,28 @@ public class MainActivity extends Activity {
 
             @Override
             public void onClick(View arg0) {
-            try {
-                Intent intentAccensioneProgrammata = new Intent(MainActivity.this, AccensioneProgrammataActivity.class);
-                startActivity(intentAccensioneProgrammata);
-                finish();
-            } catch(Exception e) {
-                Toast.makeText(context, "ERRORE CHIAMATA ACCENSIONE PROGRAMMATA (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
+                try {
+                    Intent intentAccensioneProgrammata = new Intent(MainActivity.this, AccensioneProgrammataActivity.class);
+                    startActivity(intentAccensioneProgrammata);
+                    finish();
+                } catch (Exception e) {
+                    Toast.makeText(context, "ERRORE CHIAMATA ACCENSIONE PROGRAMMATA (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
+                }
             }
+
+        });
+
+        btnBluetoothOnOff.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                try {
+                    Intent intentAccensioneProgrammata = new Intent(MainActivity.this, AccensioneProgrammataActivity.class);
+                    startActivity(intentAccensioneProgrammata);
+                    finish();
+                } catch(Exception e) {
+                    Toast.makeText(context, "ERRORE BLUETOOTH ON/OFF (MAIN ACTIVITY)!!!", Toast.LENGTH_SHORT).show();
+                }
             }
 
         });
