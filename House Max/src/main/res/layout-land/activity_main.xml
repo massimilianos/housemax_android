@@ -1,0 +1,210 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:stretchColumns="1,2"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin">
+
+        <TableRow
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_span="4"
+                android:text="@string/app_name"
+                android:id="@+id/lblAppName"
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="center"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+        </TableRow>
+
+        <TableRow
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5sp">
+
+            <TextView
+                android:text="@string/temperatura"
+                android:id="@+id/lblTemperatura"
+                android:layout_marginEnd="50sp"
+                android:layout_span="1"
+                android:textSize="15sp" />
+
+            <TextView
+                android:text="@string/wait_value"
+                android:layout_gravity="center"
+                android:id="@+id/txtTemperatura"
+                android:layout_span="1"
+                android:layout_column="1"
+                android:textSize="15sp" />
+
+            <TextView
+                android:text="@string/umidita"
+                android:id="@+id/lblUmidita"
+                android:layout_marginEnd="85sp"
+                android:layout_span="1"
+                android:textSize="15sp" />
+
+            <TextView
+                android:text="@string/wait_value"
+                android:layout_gravity="center"
+                android:id="@+id/txtUmidita"
+                android:textSize="15sp"
+                android:layout_span="1"
+                android:layout_column="1"
+                android:layout_weight="0.07" />
+        </TableRow>
+
+        <TableRow
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5sp"
+            android:layout_gravity="end">
+
+            <TextView
+                android:text="@string/modalita"
+                android:id="@+id/lblModalita"
+                android:layout_gravity="center_vertical"
+                android:layout_span="1"
+                android:textSize="15sp"
+                android:layout_marginEnd="68sp" />
+
+            <ImageButton
+                android:layout_height="40sp"
+                android:contentDescription="@null"
+                android:id="@+id/btnModalita"
+                android:focusable="true"
+                android:src="@drawable/winter"
+                android:layout_gravity="center"
+                android:layout_span="1"
+                android:clickable="true" />
+        </TableRow>
+
+        <TableRow
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end">
+
+            <TextView
+                android:text="@string/temperaturaControlloCut"
+                android:id="@+id/lblLabelTempControllo"
+                android:layout_span="1"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/txtTempControllo"
+                android:inputType="numberDecimal"
+                android:layout_width="2sp"
+                android:layout_span="1" />
+
+            <TextView
+                android:text="Max."
+                android:id="@+id/lblTempControllo"
+                android:layout_span="1"
+                android:textSize="15sp"
+                android:layout_gravity="center" />
+
+            <Button
+                android:layout_height="40sp"
+                android:text="OK"
+                android:id="@+id/btnTempControllo"
+                android:layout_span="1"
+                android:layout_gravity="center" />
+        </TableRow>
+
+        <TableRow
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end" >
+
+            <Switch
+                android:text="Abilitazione Manuale"
+                android:textSize="15sp"
+                android:id="@+id/swcManualControl"
+                android:layout_span="2"
+                android:layout_marginTop="0sp" />
+        </TableRow>
+
+        <TableRow
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5sp"
+            android:layout_gravity="end" >
+
+            <Switch
+                android:text="@string/relay1"
+                android:textSize="15sp"
+                android:layout_span="2"
+                android:id="@+id/swcRelay1" />
+
+            <Switch
+                android:text="@string/relay2"
+                android:textSize="15sp"
+                android:layout_span="2"
+                android:id="@+id/swcRelay2" />
+        </TableRow>
+
+        <TableRow
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5sp"
+            android:layout_gravity="center_horizontal" >
+
+            <Switch
+                android:text="@string/relay3"
+                android:textSize="15sp"
+                android:layout_span="2"
+                android:id="@+id/swcRelay3" />
+
+            <Switch
+                android:text="@string/relay4"
+                android:textSize="15sp"
+                android:layout_span="2"
+                android:id="@+id/swcRelay4"
+                android:layout_marginBottom="5sp" />
+        </TableRow>
+
+        <TableRow
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal" >
+
+            <Button
+                android:layout_height="35dp"
+                android:text="@string/title_activity_accensione_programmata"
+                android:id="@+id/btnAccensioneProgrammata"
+                android:layout_gravity="center_horizontal"
+                android:layout_span="2"
+                android:textSize="15sp" />
+
+            <Button
+                android:layout_height="35dp"
+                android:text="@string/attiva_bluetooth"
+                android:id="@+id/btnBluetoothOnOff"
+                android:layout_gravity="center_horizontal"
+                android:layout_span="4"
+                android:textSize="15sp" />
+        </TableRow>
+    </TableLayout>
+</LinearLayout>

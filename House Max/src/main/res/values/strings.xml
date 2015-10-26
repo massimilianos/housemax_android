@@ -9,6 +9,7 @@
     <string name="umidita">Umidita</string>
     <string name="modalita">Modalita\'</string>
     <string name="temperaturaControllo">Temperatura Controllo</string>
+    <string name="temperaturaControlloCut">Temp. Controllo</string>
     <string name="relay1">Riscaldamento</string>
     <string name="relay2">Condizionatore</string>
     <string name="relay3">Porta Ingresso</string>
