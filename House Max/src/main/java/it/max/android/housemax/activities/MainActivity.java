@@ -316,7 +316,7 @@ public class MainActivity extends Activity {
             }
             }
         });
-
+/*
         btnAccensioneProgrammata.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -346,6 +346,7 @@ public class MainActivity extends Activity {
             }
 
         });
+*/
     }
 
 
