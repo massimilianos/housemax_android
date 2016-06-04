@@ -112,6 +112,9 @@ public class HouseMaxService extends Service {
                     Log.d("URL TemperatureRead", URL);
                     dati[0] = internetUtils.internetResult(URL);
 
+                    // ASPETTO MEZZO SECONDO PER LEGGERE L'UMIDITA'
+                    Thread.sleep(500);
+
                     // LEGGO L'UMIDITA
 //                    URL = URLWebServer + "/dati/ElaboraDati.php?operazione=select&valore=umidita";
                     URL = URLArduinoServer + "HumidityRead";

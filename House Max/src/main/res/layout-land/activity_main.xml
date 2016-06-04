@@ -196,7 +196,8 @@
                 android:id="@+id/btnAccensioneProgrammata"
                 android:layout_gravity="center_horizontal"
                 android:layout_span="2"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:visibility="invisible" />
 
             <Button
                 android:layout_height="35dp"
@@ -204,7 +205,8 @@
                 android:id="@+id/btnBluetoothOnOff"
                 android:layout_gravity="center_horizontal"
                 android:layout_span="4"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:visibility="invisible" />
         </TableRow>
     </TableLayout>
 </LinearLayout>

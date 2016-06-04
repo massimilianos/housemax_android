@@ -231,7 +231,8 @@
                 android:id="@+id/btnAccensioneProgrammata"
                 android:layout_gravity="center_horizontal"
                 android:layout_span="4"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:visibility="invisible" />
         </TableRow>
 
         <TableRow
@@ -246,7 +247,8 @@
                 android:id="@+id/btnBluetoothOnOff"
                 android:layout_gravity="center_horizontal"
                 android:layout_span="4"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:visibility="invisible" />
         </TableRow>
     </TableLayout>
 </LinearLayout>
